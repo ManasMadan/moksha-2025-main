@@ -3,8 +3,8 @@ import { SVGProps } from "react"
 const RightWing = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width={329}
-    height={402}
+    // width={329}
+    // height={402}
     viewBox="0 0 329 402"
     fill="none"
     {...props}

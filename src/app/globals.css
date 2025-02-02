@@ -146,12 +146,12 @@ body {
       0% 30%);
 }
 
-/* *{
+*{
     cursor: none;
 }
 :hover{
 	cursor: none;
-} */
+}
 
 .star {
   position: fixed;

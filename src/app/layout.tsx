@@ -13,8 +13,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <link rel="preload" href="/assets/gallery/images/artist1.png" as="image" />
+          <link rel="preload" href="/assets/gallery/images/artist2.png" as="image" />
+          <link rel="preload" href="/assets/gallery/images/artist3.png" as="image" />
+          <link rel="preload" href="/assets/gallery/images/artist4.png" as="image" />
+          <link rel="preload" href="/assets/gallery/images/artist5.png" as="image" />
+          <link rel="preload" href="/assets/gallery/images/artist6.png" as="image" />
+          <link rel="preload" href="/assets/gallery/images/artist7.png" as="image" />
+          <link rel="preload" href="/assets/gallery/images/artist8.png" as="image" />
+          <link rel="preload" href="/assets/gallery/images/artist9.png" as="image" />
+          <link rel="preload" href="/assets/gallery/images/artist10.png" as="image" />
+          <link rel="preload" href="/assets/gallery/images/artist11.png" as="image" />
       <body>{children}</body>
-      {/* <CustomCursor/> */}
+      <CustomCursor/>
     </html>
   );
 }

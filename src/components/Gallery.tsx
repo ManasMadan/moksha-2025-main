@@ -36,14 +36,18 @@ const Gallery = () => {
 
     return () => clearInterval(interval);
   }, []);
+
   useEffect(() => {
-  const preloadImage = (src: string) => {
-    const img = new window.Image();
-    img.src = src;
-  };
-  
-  preloadImage(artistArray[(currentArtist + 1) % artistArray.length]);
-}, [currentArtist]);
+    const preloadImages = (srcArray: string[]) => {
+      srcArray.forEach((src) => {
+        const img = new window.Image();
+        img.src = src;
+      });
+    };
+    
+    preloadImages(artistArray);
+  }, [artistArray]);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -80,6 +84,7 @@ const Gallery = () => {
       }
     };
   }, []);
+
   const handlePrev = () => {
     setCurrentArtist((prev) => (prev > 0 ? prev - 1 : artistArray.length - 1));
   };

@@ -36,7 +36,14 @@ const Gallery = () => {
 
     return () => clearInterval(interval);
   }, []);
-
+  useEffect(() => {
+  const preloadImage = (src: string) => {
+    const img = new window.Image();
+    img.src = src;
+  };
+  
+  preloadImage(artistArray[(currentArtist + 1) % artistArray.length]);
+}, [currentArtist]);
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {

@@ -134,7 +134,7 @@ const Accordion = ({ title, content }:{title:string,content:string}) => {
         className={`${isActive ? 'max-h-screen' : 'max-h-0'} overflow-hidden transition-max-height duration-500 ease-in-out`}
       >
         <div
-          className="py-3 px-2 text-white bg-opacity-20 backdrop-blur-sm border-[1px] border-solid translate-x-4 border-white rounded-md scale-y-110 max-w-96 will-change-transform"
+          className="py-3 px-3 text-white bg-opacity-20 backdrop-blur-sm border-[1px] border-solid translate-x-4 border-white rounded-md scale-y-110 max-w-96 will-change-transform"
         >
           {content}
         </div>

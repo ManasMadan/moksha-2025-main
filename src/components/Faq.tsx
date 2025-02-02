@@ -100,7 +100,7 @@ const Authcircle = ({ name, position, size, content, activeCircle, setActiveCirc
   { name: string, position: string, size: string, content: React.ReactNode, activeCircle: string | null, setActiveCircle: (name: string | null) => void }) => {
   const isActive = activeCircle === name;
 
-  const buttonClass = `overflow-visible absolute text-xl md:text-3xl flex items-center justify-center text-center rounded-full transition-all duration-300 ${position}`;
+  const buttonClass = `overflow-visible  absolute text-xl md:text-3xl flex items-center justify-center text-center rounded-full transition-all duration-300 ${position}`;
 
   const activeClass = isActive ? 'bg-gray-500 text-base text-black h-8 w-8 md:h-12 md:w-12' : `bg-[#010115] text-white ${size} ${playfair.className} border-t-2`;
 

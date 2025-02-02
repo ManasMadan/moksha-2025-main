@@ -26,6 +26,9 @@ importers:
       react-hook-form:
         specifier: ^7.54.2
         version: 7.54.2(react@19.0.0)
+      react-tiny-popover:
+        specifier: ^8.1.4
+        version: 8.1.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react-tooltip:
         specifier: ^5.28.0
         version: 5.28.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -683,6 +686,12 @@ packages:
     engines: {node: '>=18.0.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18 || ^19
+
+  react-tiny-popover@8.1.4:
+    resolution: {integrity: sha512-rHNAosGfUwlkOQeTJ+fCX/lHUOuMmgQZVhtRBnU9DqAONgltSv1QIZHeG1FGvZIGg7y7wbV4H6wriDuiSssIfQ==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
 
   react-tooltip@5.28.0:
     resolution: {integrity: sha512-R5cO3JPPXk6FRbBHMO0rI9nkUG/JKfalBSQfZedZYzmqaZQgq7GLzF8vcCWx6IhUCKg0yPqJhXIzmIO5ff15xg==}
@@ -1365,6 +1374,11 @@ snapshots:
   react-hook-form@7.54.2(react@19.0.0):
     dependencies:
       react: 19.0.0
+
+  react-tiny-popover@8.1.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+    dependencies:
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
 
   react-tooltip@5.28.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:

@@ -28,9 +28,6 @@ const HorizontalScroll = () => {
         <section className="h-full w-screen">
           <ContactUs/>
         </section>
-        <section>
-          <Page/>
-        </section>
       </div>
     </div>
   );

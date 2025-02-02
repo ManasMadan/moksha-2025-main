@@ -25,9 +25,9 @@ const Gallery = () => {
 
   const [currentArtist, setCurrentArtist] = useState(0);
 
-  const crystalBackgroundRef = useRef(null);
-  const leftDoor = useRef(null);
-  const righttDoor = useRef(null);
+  const crystalBackgroundRef = useRef<HTMLDivElement>(null);
+  const leftDoor = useRef<HTMLDivElement>(null);
+  const rightDoor = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -42,9 +42,9 @@ const Gallery = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.style.animationPlayState = 'running';
+            (entry.target as HTMLDivElement).style.animationPlayState = 'running';
           } else {
-            entry.target.style.animationPlayState = 'paused';
+            (entry.target as HTMLDivElement).style.animationPlayState = 'paused';
           }
         });
       },
@@ -53,19 +53,26 @@ const Gallery = () => {
 
     if (crystalBackgroundRef.current) {
       observer.observe(crystalBackgroundRef.current);
-      observer.observe(leftDoor.current!);
-      observer.observe(righttDoor.current!);
+    }
+    if (leftDoor.current) {
+      observer.observe(leftDoor.current);
+    }
+    if (rightDoor.current) {
+      observer.observe(rightDoor.current);
     }
 
     return () => {
       if (crystalBackgroundRef.current) {
         observer.unobserve(crystalBackgroundRef.current);
-        observer.observe(leftDoor.current!);
-        observer.observe(righttDoor.current!);
+      }
+      if (leftDoor.current) {
+        observer.unobserve(leftDoor.current);
+      }
+      if (rightDoor.current) {
+        observer.unobserve(rightDoor.current);
       }
     };
   }, []);
-
   const handlePrev = () => {
     setCurrentArtist((prev) => (prev > 0 ? prev - 1 : artistArray.length - 1));
   };
@@ -98,7 +105,7 @@ const Gallery = () => {
       >
         <div className='scale-105 h-full'>
           <div className='absolute bg-[url(/assets/gallery/leftDoor.png)] bg-no-repeat h-[14.5rem] w-[6.9rem] md:h-[18rem] md:w-[8.45rem] z-50 top-[15.3%] md:left-[24.2%] left-[24.2%] bg-contain' id='leftDoor' ref={leftDoor} />
-          <div className='absolute bg-[url(/assets/gallery/rightDoor.png)] bg-no-repeat  h-[14.5rem] w-[6.75rem] md:h-[18rem] md:w-[8.45rem] z-50 top-[15.3%] md:right-[22.25%] right-[22.25%]  bg-contain' id='rightDoor' ref={righttDoor} />
+          <div className='absolute bg-[url(/assets/gallery/rightDoor.png)] bg-no-repeat  h-[14.5rem] w-[6.75rem] md:h-[18rem] md:w-[8.45rem] z-50 top-[15.3%] md:right-[22.25%] right-[22.25%]  bg-contain' id='rightDoor' ref={rightDoor} />
         </div>
       </div>
       <div className="flex space-x-4 justify-between w-[24rem] md:w-[30rem] px-7">

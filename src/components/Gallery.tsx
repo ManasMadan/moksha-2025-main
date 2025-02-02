@@ -1,13 +1,15 @@
-'use client'
-import React, { useEffect, useRef, useState } from 'react';
+'use client';
+
 import { Cinzel } from 'next/font/google';
+import Image from 'next/image';
+import React, { useEffect, useRef, useState } from 'react';
 
 const cinzel = Cinzel({
   subsets: ['latin'],
 });
 
 const Gallery = () => {
-  const artistArray = [
+  const artistArray: string[] = [
     '/assets/gallery/images/artist1.png',
     '/assets/gallery/images/artist2.png',
     '/assets/gallery/images/artist3.png',
@@ -23,9 +25,9 @@ const Gallery = () => {
 
   const [currentArtist, setCurrentArtist] = useState(0);
 
-  const crystalBackgroundRef = useRef(null);
-  const leftDoor = useRef(null);
-  const rightDoor = useRef(null);
+  const crystalBackgroundRef = useRef<HTMLDivElement>(null);
+  const leftDoor = useRef<HTMLDivElement>(null);
+  const rightDoor = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -39,11 +41,10 @@ const Gallery = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          const target = entry.target as HTMLDivElement; // Type assertion here
           if (entry.isIntersecting) {
-            target.style.animationPlayState = 'running';
+            (entry.target as HTMLDivElement).style.animationPlayState = 'running';
           } else {
-            target.style.animationPlayState = 'paused';
+            (entry.target as HTMLDivElement).style.animationPlayState = 'paused';
           }
         });
       },
@@ -72,19 +73,6 @@ const Gallery = () => {
       }
     };
   }, []);
-
-  // Preload images
-  useEffect(() => {
-    const preloadImages = (urls:string[]) => {
-      urls.forEach((url) => {
-        const img = new Image();
-        img.src = url;
-      });
-    };
-
-    preloadImages(artistArray);
-  }, [artistArray]);
-
   const handlePrev = () => {
     setCurrentArtist((prev) => (prev > 0 ? prev - 1 : artistArray.length - 1));
   };
@@ -105,33 +93,29 @@ const Gallery = () => {
       </div>
       <div
         className={`h-[20rem] w-[24rem] md:h-[25rem] md:w-[30rem] bg-blend-color-burn bg-no-repeat relative z-30`}
-        style={{
-          backgroundImage: `url(${artistArray[currentArtist]}), url(/assets/gallery/portal.png)`,
-          backgroundSize: '52% 72%, cover',
-          backgroundPosition: '50% 55%, center',
-        }}
+        style={
+          {
+            backgroundImage: `url(${artistArray[currentArtist]}) ,url(/assets/gallery/portal.png)`,
+            backgroundSize: `52% 72%,cover`,
+            backgroundPosition: `50% 55%,center`
+
+          }
+        }
+
       >
-        <div className="scale-105 h-full">
-          <div
-            className="absolute bg-[url(/assets/gallery/leftDoor.png)] bg-no-repeat h-[14.5rem] w-[6.9rem] md:h-[18rem] md:w-[8.45rem] z-50 top-[15.3%] md:left-[24.2%] left-[24.2%] bg-contain"
-            id="leftDoor"
-            ref={leftDoor}
-          />
-          <div
-            className="absolute bg-[url(/assets/gallery/rightDoor.png)] bg-no-repeat h-[14.5rem] w-[6.75rem] md:h-[18rem] md:w-[8.45rem] z-50 top-[15.3%] md:right-[22.25%] right-[22.25%] bg-contain"
-            id="rightDoor"
-            ref={rightDoor}
-          />
+        <div className='scale-105 h-full'>
+          <div className='absolute bg-[url(/assets/gallery/leftDoor.png)] bg-no-repeat h-[14.5rem] w-[6.9rem] md:h-[18rem] md:w-[8.45rem] z-50 top-[15.3%] md:left-[24.2%] left-[24.2%] bg-contain' id='leftDoor' ref={leftDoor} />
+          <div className='absolute bg-[url(/assets/gallery/rightDoor.png)] bg-no-repeat  h-[14.5rem] w-[6.75rem] md:h-[18rem] md:w-[8.45rem] z-50 top-[15.3%] md:right-[22.25%] right-[22.25%]  bg-contain' id='rightDoor' ref={rightDoor} />
         </div>
       </div>
       <div className="flex space-x-4 justify-between w-[24rem] md:w-[30rem] px-7">
         <button
           onClick={handlePrev}
-          className="bg-cover bg-[url(/assets/gallery/left-arrow.png)] w-[8.5rem] h-[5.5rem]"
+          className='bg-cover bg-[url(/assets/gallery/left-arrow.png)] w-[8.5rem] h-[5.5rem]'
         />
         <button
           onClick={handleNext}
-          className="bg-cover bg-[url(/assets/gallery/right-arrow.png)] w-[8.5rem] h-[5.5rem]"
+          className='bg-cover bg-[url(/assets/gallery/right-arrow.png)] w-[8.5rem] h-[5.5rem]'
         />
       </div>
     </div>

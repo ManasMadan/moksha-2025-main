@@ -3,7 +3,11 @@ import { Playfair } from 'next/font/google'
 import React, { useState } from 'react'
 import { Popover } from 'react-tiny-popover'
 
-const playfair = Playfair();
+const playfair = Playfair(
+  {
+    subsets: ['latin'],
+  }
+);
 const Faq = () => {
   const [activeCircle, setActiveCircle] = useState<string | null>(null);
 

@@ -60,6 +60,17 @@ const Gallery = () => {
   }, [artistArray]);
 
   useEffect(() => {
+    const preloadImages = (srcArray: string[]) => {
+      srcArray.forEach((src) => {
+        const img = new window.Image();
+        img.src = src;
+      });
+    };
+  
+    preloadImages(artistArray);
+  }, []);
+
+  useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {

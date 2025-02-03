@@ -104,7 +104,7 @@ const Gallery = () => {
         Gallery
       </div>
       <div
-        className={`h-[20rem] w-[24rem] md:h-[25rem] md:w-[30rem] bg-blend-color-burn bg-no-repeat relative z-30`}
+        className={`h-[17.5rem] w-[21rem] md:h-[25rem] md:w-[30rem] bg-blend-color-burn bg-no-repeat relative z-30`}
         style={
           {
             backgroundImage: `url(${artistArray[currentArtist]}) ,url(/assets/gallery/portal.png)`,
@@ -116,8 +116,8 @@ const Gallery = () => {
 
       >
         <div className='scale-105 h-full'>
-          <div className='absolute bg-[url(/assets/gallery/leftDoor.png)] bg-no-repeat h-[14.5rem] w-[6.9rem] md:h-[18rem] md:w-[8.45rem] z-50 top-[15.3%] md:left-[24.2%] left-[24.2%] bg-contain' id='leftDoor' ref={leftDoor} />
-          <div className='absolute bg-[url(/assets/gallery/rightDoor.png)] bg-no-repeat  h-[14.5rem] w-[6.75rem] md:h-[18rem] md:w-[8.45rem] z-50 top-[15.3%] md:right-[22.25%] right-[22.25%]  bg-contain' id='rightDoor' ref={rightDoor} />
+          <div className='absolute bg-[url(/assets/gallery/leftDoor.png)] bg-no-repeat h-[12.5rem] w-[6.9rem] md:h-[18rem] md:w-[8.45rem] z-50 top-[15.3%] md:left-[24.2%] left-[25%] bg-contain' id='leftDoor' ref={leftDoor} />
+          <div className='absolute bg-[url(/assets/gallery/rightDoor.png)] bg-no-repeat  h-[12.5rem] w-[6.75rem] md:h-[18rem] md:w-[8.45rem] z-50 top-[15.3%] md:right-[22.25%] right-[17.6%]  bg-contain' id='rightDoor' ref={rightDoor} />
         </div>
       </div>
       <div className="flex space-x-4 justify-between w-[24rem] md:w-[30rem] px-7">

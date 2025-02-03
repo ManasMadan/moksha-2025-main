@@ -24,6 +24,7 @@ const Gallery = () => {
   ];
 
   const [currentArtist, setCurrentArtist] = useState(0);
+  const [animation, setAnimation] = useState('fade-in');
 
   const crystalBackgroundRef = useRef<HTMLDivElement>(null);
   const leftDoor = useRef<HTMLDivElement>(null);
@@ -31,7 +32,11 @@ const Gallery = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentArtist((prev) => (prev < artistArray.length - 1 ? prev + 1 : 0));
+      setAnimation('fade-out');
+      setTimeout(() => {
+        setCurrentArtist((prev) => (prev < artistArray.length - 1 ? prev + 1 : 0));
+        setAnimation('fade-in');
+      }, 1000);
     }, 3000);
 
     return () => clearInterval(interval);
@@ -44,7 +49,7 @@ const Gallery = () => {
         img.src = src;
       });
     };
-    
+
     preloadImages(artistArray);
   }, [artistArray]);
 
@@ -86,11 +91,19 @@ const Gallery = () => {
   }, []);
 
   const handlePrev = () => {
-    setCurrentArtist((prev) => (prev > 0 ? prev - 1 : artistArray.length - 1));
+    setAnimation('fade-out');
+    setTimeout(() => {
+      setCurrentArtist((prev) => (prev > 0 ? prev - 1 : artistArray.length - 1));
+      setAnimation('fade-in');
+    }, 1000);
   };
 
   const handleNext = () => {
-    setCurrentArtist((prev) => (prev < artistArray.length - 1 ? prev + 1 : 0));
+    setAnimation('fade-out');
+    setTimeout(() => {
+      setCurrentArtist((prev) => (prev < artistArray.length - 1 ? prev + 1 : 0));
+      setAnimation('fade-in');
+    }, 1000);
   };
 
   return (
@@ -104,20 +117,39 @@ const Gallery = () => {
         Gallery
       </div>
       <div
-        className={`h-[17.5rem] w-[21rem] md:h-[25rem] md:w-[30rem] bg-blend-color-burn bg-no-repeat relative z-30`}
-        style={
-          {
-            backgroundImage: `url(${artistArray[currentArtist]}) ,url(/assets/gallery/portal.png)`,
-            backgroundSize: `52% 72%,cover`,
-            backgroundPosition: `50% 55%,center`
-
-          }
-        }
-
+        className={`h-[17.5rem] w-[21rem] md:h-[25rem] md:w-[30rem] bg-blend-color-burn bg-no-repeat relative`}
+        style={{
+          backgroundImage: `url(/assets/gallery/portal.png)`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          zIndex: 0,
+        }}
       >
+        <div className={`absolute h-[71.5%] w-[52.5%] top-[15.3%] left-[24%] bg-black bg-opacity-80
+         `} >
+          <Image
+            src={artistArray[currentArtist]}
+            fill
+            alt='artist image'
+            className={`${animation}`}
+            
+          />
+        </div>
         <div className='scale-105 h-full'>
-          <div className='absolute bg-[url(/assets/gallery/leftDoor.png)] bg-no-repeat h-[12.5rem] w-[6.9rem] md:h-[18rem] md:w-[8.45rem] z-50 top-[15.3%] md:left-[24.2%] left-[25%] bg-contain' id='leftDoor' ref={leftDoor} />
-          <div className='absolute bg-[url(/assets/gallery/rightDoor.png)] bg-no-repeat  h-[12.5rem] w-[6.75rem] md:h-[18rem] md:w-[8.45rem] z-50 top-[15.3%] md:right-[22.25%] right-[17.6%]  bg-contain' id='rightDoor' ref={rightDoor} />
+          <div className='absolute bg-no-repeat h-[12.5rem] w-[6rem] md:h-[18rem] md:w-[8.1rem] z-50 top-[15.3%] md:left-[24.2%] left-[25%] bg-contain' id='leftDoor' ref={leftDoor} >
+            <Image
+              src={'/assets/gallery/leftDoor.png'}
+              fill
+              alt='left door'
+            />
+          </div>
+          <div className='absolute bg-no-repeat h-[12.5rem] w-[6.1rem] md:h-[18rem] md:w-[8rem] z-50 top-[15.3%] md:right-[22.25%] right-[17.6%] bg-contain' id='rightDoor' ref={rightDoor} >
+            <Image
+              src={'/assets/gallery/rightDoor.png'}
+              fill
+              alt='right door'
+            />
+          </div>
         </div>
       </div>
       <div className="flex space-x-4 justify-between w-[24rem] md:w-[30rem] px-7">

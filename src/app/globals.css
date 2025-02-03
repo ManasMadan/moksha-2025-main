@@ -137,6 +137,34 @@ body {
 
 }
 
+
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+.fade-out {
+  animation: fadeOut 1s ease-in-out forwards;
+}
+
 .inner {
   background: rgba(255, 255, 255, 0.6);
   clip-path: polygon(50% 0%,

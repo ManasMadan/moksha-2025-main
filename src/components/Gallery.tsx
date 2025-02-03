@@ -25,21 +25,27 @@ const Gallery = () => {
 
   const [currentArtist, setCurrentArtist] = useState(0);
   const [animation, setAnimation] = useState('fade-in');
+  const [timer, setTimer] = useState<NodeJS.Timeout | null>(null);
 
   const crystalBackgroundRef = useRef<HTMLDivElement>(null);
   const leftDoor = useRef<HTMLDivElement>(null);
   const rightDoor = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
+  const startTimer = () => {
+    if (timer) clearInterval(timer);
+    const newTimer = setInterval(() => {
       setAnimation('fade-out');
       setTimeout(() => {
         setCurrentArtist((prev) => (prev < artistArray.length - 1 ? prev + 1 : 0));
         setAnimation('fade-in');
-      }, 1000);
-    }, 3000);
+      }, 500);
+    }, 5000);
+    setTimer(newTimer);
+  };
 
-    return () => clearInterval(interval);
+  useEffect(() => {
+    startTimer();
+    return () => clearInterval(timer!);
   }, []);
 
   useEffect(() => {
@@ -95,7 +101,8 @@ const Gallery = () => {
     setTimeout(() => {
       setCurrentArtist((prev) => (prev > 0 ? prev - 1 : artistArray.length - 1));
       setAnimation('fade-in');
-    }, 1000);
+    }, 500);
+    startTimer();
   };
 
   const handleNext = () => {
@@ -103,7 +110,8 @@ const Gallery = () => {
     setTimeout(() => {
       setCurrentArtist((prev) => (prev < artistArray.length - 1 ? prev + 1 : 0));
       setAnimation('fade-in');
-    }, 1000);
+    }, 500);
+    startTimer();
   };
 
   return (
@@ -132,7 +140,6 @@ const Gallery = () => {
             fill
             alt='artist image'
             className={`${animation}`}
-            
           />
         </div>
         <div className='scale-105 h-full'>

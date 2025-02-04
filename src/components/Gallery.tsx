@@ -24,7 +24,6 @@ const Gallery = () => {
   ];
 
   const [currentArtist, setCurrentArtist] = useState(0);
-  const [animation, setAnimation] = useState('fade-in');
   const [timer, setTimer] = useState<NodeJS.Timeout | null>(null);
 
   const crystalBackgroundRef = useRef<HTMLDivElement>(null);
@@ -34,11 +33,7 @@ const Gallery = () => {
   const startTimer = () => {
     if (timer) clearInterval(timer);
     const newTimer = setInterval(() => {
-      setAnimation('fade-out');
-      setTimeout(() => {
-        setCurrentArtist((prev) => (prev < artistArray.length - 1 ? prev + 1 : 0));
-        setAnimation('fade-in');
-      }, 500);
+      setCurrentArtist((prev) => (prev < artistArray.length - 1 ? prev + 1 : 0));
     }, 5000);
     setTimer(newTimer);
   };
@@ -58,17 +53,6 @@ const Gallery = () => {
 
     preloadImages(artistArray);
   }, [artistArray]);
-
-  useEffect(() => {
-    const preloadImages = (srcArray: string[]) => {
-      srcArray.forEach((src) => {
-        const img = new window.Image();
-        img.src = src;
-      });
-    };
-  
-    preloadImages(artistArray);
-  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -108,20 +92,12 @@ const Gallery = () => {
   }, []);
 
   const handlePrev = () => {
-    setAnimation('fade-out');
-    setTimeout(() => {
-      setCurrentArtist((prev) => (prev > 0 ? prev - 1 : artistArray.length - 1));
-      setAnimation('fade-in');
-    }, 500);
+    setCurrentArtist((prev) => (prev > 0 ? prev - 1 : artistArray.length - 1));
     startTimer();
   };
 
   const handleNext = () => {
-    setAnimation('fade-out');
-    setTimeout(() => {
-      setCurrentArtist((prev) => (prev < artistArray.length - 1 ? prev + 1 : 0));
-      setAnimation('fade-in');
-    }, 500);
+    setCurrentArtist((prev) => (prev < artistArray.length - 1 ? prev + 1 : 0));
     startTimer();
   };
 
@@ -144,16 +120,18 @@ const Gallery = () => {
           zIndex: 0,
         }}
       >
-        <div className={`absolute h-[71.5%] w-[52.5%] top-[15.3%] left-[24%] bg-black bg-opacity-80
-         `} >
-          <Image
-            src={artistArray[currentArtist]}
-            fill
-            alt='artist image'
-            className={`${animation}`}
-          />
+        <div className={`absolute h-[71.5%] w-[52.5%] top-[15.3%] left-[24%] bg-black bg-opacity-80`}>
+          {artistArray.map((src, index) => (
+            <Image
+              key={index}
+              src={src}
+              fill
+              alt={`artist ${index + 1}`}
+              className={currentArtist === index ? 'fade-in' : 'hidden'}
+            />
+          ))}
         </div>
-        <div className='scale-105 h-full'>
+        <div className="scale-105 h-full">
           <div className='absolute bg-no-repeat h-[12.5rem] w-[6rem] md:h-[18rem] md:w-[8.1rem] z-50 top-[15.3%] md:left-[24.2%] left-[25%] bg-contain' id='leftDoor' ref={leftDoor} >
             <Image
               src={'/assets/gallery/leftDoor.png'}

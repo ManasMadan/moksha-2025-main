@@ -3,6 +3,7 @@ import ContactUs from "@/components/ContactUs";
 import Events from "@/components/Events";
 import Landing from "@/components/Landing";
 import { Cinzel } from "next/font/google";
+import Page from "./gallery/page";
 
 const cinzel = Cinzel({
     subsets: ['latin'],

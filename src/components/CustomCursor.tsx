@@ -11,6 +11,8 @@ const CustomCursor = () => {
   const [isMouseConnected, setIsMouseConnected] = useState<boolean>(false);
 
   const handleMouseMove = (e: MouseEvent) => {
+    if (e.movementX === 0 && e.movementY === 0) return;
+
     setIsMouseConnected(true);
     if (!visible) setVisible(true);
 
@@ -23,9 +25,9 @@ const CustomCursor = () => {
       var star = document.createElement("div");
 
       star.className = "star";
-      star.style.top = e.clientY + Math.round(Math.random() * x - x / 2) + 20+ "px";
+      star.style.top = e.clientY + Math.round(Math.random() * x - x / 2) + 20 + "px";
       star.style.left =
-        e.clientX + Math.round(Math.random() * x - x / 2)  + "px";
+        e.clientX + Math.round(Math.random() * x - x / 2) + "px";
 
       document.body.appendChild(star);
 
@@ -53,6 +55,7 @@ const CustomCursor = () => {
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseout", handleMouseOut);
+      window.removeEventListener("mouseenter", handleMouseEnter);
     };
   }, [handleMouseMove]);
 
@@ -63,8 +66,8 @@ const CustomCursor = () => {
   return (
     <div
       style={{
-        top: position.y-5,
-        left: position.x-5,
+        top: position.y - 5,
+        left: position.x - 5,
         backgroundImage: `url(/assets/cursor/animal.gif)`,
         width: "100px",
         height: "100px",

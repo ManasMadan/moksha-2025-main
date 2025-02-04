@@ -112,15 +112,14 @@ const Gallery = () => {
         Gallery
       </div>
       <div
-        className={`h-[17.5rem] w-[21rem] md:h-[25rem] md:w-[30rem] bg-blend-color-burn bg-no-repeat relative`}
-        style={{
-          backgroundImage: `url(/assets/gallery/portal.png)`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          zIndex: 0,
-        }}
-      >
-        <div className={`absolute h-[71.5%] w-[52.5%] top-[15.3%] left-[24%] bg-black bg-opacity-80`}>
+        className={`h-[17.5rem] w-[21rem] md:h-[25rem] md:w-[30rem] bg-blend-color-burn bg-no-repeat relative`}>
+          <Image
+          src={'/assets/gallery/portal.png'}
+          alt='portal'
+          fill
+          className={`z-50`}
+          />
+        <div className={`absolute h-[72.5%] w-[52.5%] top-[15.3%] left-[24%] bg-black bg-opacity-80`}>
           {artistArray.map((src, index) => (
             <Image
               key={index}

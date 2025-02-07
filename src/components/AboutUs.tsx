@@ -8,7 +8,7 @@ const playfair = Playfair({
 
 const AboutUs = () => {
     return (
-        <div className={` text-white w-[100%] h-[100%]`}>
+        <div className={` text-white min-w-[100vw] w-auto h-screen ${playfair.className}`}>
             <div className='h-full bg-no-repeat w-full bg-left-top cloudAbout'
                 style={
                     {
@@ -25,7 +25,7 @@ const AboutUs = () => {
                             backgroundImage: "url(/assets/aboutUs/bottom.png)",
                         }
                     }>
-                    <div className='md:mx-[15vw] mx-[3vw] z-10 pt-16'>
+                    <div className='md:mx-[15vw] mx-[3vw] z-10 pt-16 px-4 sm:px-8'>
                         <div className=''>
                             <h2 className='md:text-5xl text-[6vh] font-black md:text-right text-center'>
                                 About Us

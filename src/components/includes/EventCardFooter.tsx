@@ -8,9 +8,9 @@ export default function EventCardFooter(
   return (
     <div
       {...props}
-      className={`absolute -bottom-6 md:-bottom-4 left-1/2 transform -translate-x-1/2 w-full`}
+      className={`absolute -bottom-6 md:-bottom-4 left-1/2 transform -translate-x-1/2 w-full flex justify-center items-center `}
     >
-      <div className={`w-4/5 h-9 relative mx-auto`}>
+      <div className={`w-4/5 h-9 relative mx-auto ${props.className}`}>
         <Image
           height={64}
           width={318}

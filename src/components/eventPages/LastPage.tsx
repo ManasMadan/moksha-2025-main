@@ -9,15 +9,24 @@ const cinzel = Cinzel({
   subsets: ["latin"],
 });
 
-export default function Home() {
+export default function LastPage({
+  mobileSrc = "/assets/events/last-bg-mobile.png",
+  desktopSrc = "/assets/events/last-bg-desktop.png",
+  isNavMenuShown = true,
+}: {
+  mobileSrc?: string;
+  desktopSrc?: string;
+  isNavMenuShown?: boolean;
+  bgClassName?: string;
+}) {
   return (
     <div className="h-full w-screen relative" id="event-last">
       <BackgroundPageImg
-        mobileSrc="/assets/events/last-bg-mobile.png"
-        desktopSrc="/assets/events/last-bg-desktop.png"
+        mobileSrc={mobileSrc}
+        desktopSrc={desktopSrc}
         alt="Social Media Pagr Background"
       />
-      
+
       <div className="relative z-10 h-full w-full pt-16 md:pt-14 lg:pt-12">
         <div className="ms-auto w-72 lg:w-96 h-16 lg:h-24">
           <Link href="/" className="">
@@ -25,7 +34,7 @@ export default function Home() {
           </Link>
         </div>
       </div>
-      <NavMenu className="max-sm:bottom-28 max-md:hidden" />
+      {isNavMenuShown && <NavMenu className="max-sm:bottom-28 max-md:hidden" />}
       <ContactFooter className="max-sm:px-8 max-sm:py-12" />
     </div>
   );
